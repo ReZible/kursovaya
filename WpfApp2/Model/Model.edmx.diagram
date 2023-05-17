@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05e0857c284e412c8f6e353a34b092a8" Name="Diagram1">
+        <EntityTypeShape EntityType="onlineEventsModel.Event" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlineEventsModel.EventStatus" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlineEventsModel.EventType" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlineEventsModel.EventUsers" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlineEventsModel.Role" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlineEventsModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="onlineEventsModel.User" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="onlineEventsModel.FK_event_eventStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="onlineEventsModel.FK_event_eventType" ManuallyRouted="false" />
+        <AssociationConnector Association="onlineEventsModel.FK_event_user" ManuallyRouted="false" />
+        <AssociationConnector Association="onlineEventsModel.FK_eventUsers_event" ManuallyRouted="false" />
+        <AssociationConnector Association="onlineEventsModel.FK_eventUsers_user" ManuallyRouted="false" />
+        <AssociationConnector Association="onlineEventsModel.FK_user_role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
