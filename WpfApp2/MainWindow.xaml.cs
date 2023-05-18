@@ -24,8 +24,25 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
-
             MainFrame.Navigate(new SignInPage());
+        }
+
+        private void MainFrame_ContentLoaded(object sender, EventArgs e)
+        {
+            if (MainFrame.CanGoBack)
+            {
+                BtnGoBack.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BtnGoBack.Visibility = Visibility.Hidden;
+            }
+
+        }
+
+        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.GoBack();
         }
     }
 }

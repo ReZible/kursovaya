@@ -67,11 +67,6 @@ namespace WpfApp2.Views
             UpdateShop();
         }
 
-        private void BtnBack_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
-
         private void BtnPageNext_Click(object sender, RoutedEventArgs e)
         {
             if (NumberOfPage < PagesCount)

@@ -20,9 +20,6 @@
                 <ComboBox Width="225" Name="ComboType" DisplayMemberPath="Type" SelectionChanged="ComboType_SelectionChanged"></ComboBox>
             </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Height="30" Width="169" Content="Выйти" FontSize="16" Click="BtnBack_Click"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Height="30" Width="115" Content="Пред страница" FontSize="16" Click="BtnPagePrev_Click"/>
             <TextBox Name="selectedPageTbx" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
             <Button Height="30" Width="115" Content="След страница" FontSize="16" Click="BtnPageNext_Click"/>
