@@ -91,5 +91,14 @@ namespace WpfApp2.Views
         {
             NavigationService.Navigate(new UserEventAddEditPage(null));
         }
+
+        private void ListViewItem_LeftMouseButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var item = (sender as ListViewItem).DataContext as Event;
+            if(item != null)
+            {
+                NavigationService.Navigate(new EventShowDetailsPage(item));
+            }
+        }
     }
 }

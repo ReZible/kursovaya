@@ -28,6 +28,11 @@
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_LeftMouseButtonUp" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="20" Width="400">

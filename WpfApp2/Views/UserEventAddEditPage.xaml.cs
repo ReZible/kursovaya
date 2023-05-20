@@ -75,7 +75,7 @@ namespace WpfApp2.Views
                 Event.TypeId = currentServiceType.Id;
                 AppData.db.SaveChanges();
                 MessageBox.Show("Данные сохранены");
-
+                NavigationService.GoBack();
             }
             catch (Exception ex)
             {
