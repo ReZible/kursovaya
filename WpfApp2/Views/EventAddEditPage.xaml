@@ -24,7 +24,6 @@
             <TextBox Text="{Binding Description}" FontSize="16"/>
 
             <Button Height="20" Margin="5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"/>
-            <Button Height="20" Margin="5" Content="Назад" FontSize="13" Click="BtnGoBack_Click"/>
         </StackPanel>
     </Grid>
 </Page>

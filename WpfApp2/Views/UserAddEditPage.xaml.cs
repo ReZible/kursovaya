@@ -74,10 +74,5 @@ namespace WpfApp2.Views
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
-        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
     }
 }

@@ -21,7 +21,7 @@ namespace WpfApp2.Views
     /// </summary>
     public partial class ShopPage : Page
     {
-        private int PagesCount;
+        private double PagesCount;
         private int NumberOfPage = 0;
         private int maxItemShow = 5;
         public ShopPage()
@@ -37,9 +37,9 @@ namespace WpfApp2.Views
 
             ComboType.SelectedIndex = 0;
 
-            var currentSrevices = AppData.db.Event.ToList();
-            PagesCount = currentSrevices.Count / maxItemShow;
-            LViewTours.ItemsSource = currentSrevices.Skip(maxItemShow*NumberOfPage).Take(maxItemShow).ToList();
+            var currentServices = AppData.db.Event.ToList();
+            PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
+            LViewTours.ItemsSource = currentServices.Skip(maxItemShow*NumberOfPage).Take(maxItemShow).ToList();
         }
         private void UpdateShop()
         {
@@ -48,9 +48,9 @@ namespace WpfApp2.Views
                 currentServices = currentServices.Where(c => c.EventType == ComboType.SelectedValue).ToList();
 
             currentServices = currentServices.Where(c => c.Name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
-         
-            PagesCount = currentServices.Count / maxItemShow;
-            LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
+
+            PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
+            LViewTours.ItemsSource = currentServices.Skip(maxItemShow *NumberOfPage).Take(maxItemShow).ToList();
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -69,10 +69,10 @@ namespace WpfApp2.Views
 
         private void BtnPageNext_Click(object sender, RoutedEventArgs e)
         {
-            if (NumberOfPage < PagesCount)
+            if (NumberOfPage+1 < PagesCount)
             {
                 NumberOfPage++;
-                selectedPageTbx.Text = (NumberOfPage + 1).ToString();
+                selectedPageTbx.Text = (NumberOfPage+1).ToString();
                 UpdateShop();
             }
         }
@@ -82,7 +82,7 @@ namespace WpfApp2.Views
             if (NumberOfPage > 0)
             {
                 NumberOfPage--;
-                selectedPageTbx.Text = (NumberOfPage + 1).ToString();
+                selectedPageTbx.Text = (NumberOfPage+1).ToString();
                 UpdateShop();
             }
         }

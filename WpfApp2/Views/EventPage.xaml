@@ -40,7 +40,6 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button Width="150" Height="30" Margin="10" Content="Добавить" Grid.Row="1" HorizontalAlignment="Left" Name="BtnAdd" Click="BtnAdd_Click"></Button>
-            <Button Width="150" Height="30"  Margin="10" Content="Назад" Grid.Row="1" HorizontalAlignment="Center"  Click="BtnGoBack_Click"></Button>
             <Button Width="150" Height="30"  Margin="10" Content="Удалить" Grid.Row="1" HorizontalAlignment="Right" Name="BtnDelete" Click="BtnDelete_Click"></Button>
         </Grid>
     </Grid>

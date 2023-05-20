@@ -44,6 +44,7 @@ namespace WpfApp2.Views
 
             if( CurrentUser != null)
             {   
+                AppData.CurrentUser = CurrentUser;
                 if(CurrentUser.RoleId == 1)
                 {
                     NavigationService.Navigate(new AdminPage());

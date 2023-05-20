@@ -9,5 +9,6 @@ namespace WpfApp2.Model
     public static class AppData
     {
         public static onlineEventsEntities db = new onlineEventsEntities();
+        public static User CurrentUser = new User();
     }
 }

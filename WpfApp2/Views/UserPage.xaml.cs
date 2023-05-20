@@ -65,10 +65,5 @@ namespace WpfApp2.Views
                 DGridMenu.ItemsSource = AppData.db.User.ToList();
             }
         }
-
-        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
     }
 }
