@@ -86,5 +86,10 @@ namespace WpfApp2.Views
                 UpdateShop();
             }
         }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new UserEventAddEditPage(null));
+        }
     }
 }

@@ -14,15 +14,13 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel HorizontalAlignment="Left">
-                <TextBlock Text="Введите название для поиска:" Width="175" TextAlignment="Right"></TextBlock>
-                <TextBox Width="225" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
-                <TextBlock Text="Выберите тип:" Width="175" TextAlignment="Right"></TextBlock>
-                <ComboBox Width="225" Name="ComboType" DisplayMemberPath="Type" SelectionChanged="ComboType_SelectionChanged"></ComboBox>
-            </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Height="30" Width="115" Content="Пред страница" FontSize="16" Click="BtnPagePrev_Click"/>
-            <TextBox Name="selectedPageTbx" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
-            <Button Height="30" Width="115" Content="След страница" FontSize="16" Click="BtnPageNext_Click"/>
+            <TextBlock Text="Введите название для поиска:" Width="175" TextAlignment="Right"></TextBlock>
+            <TextBox Width="225" Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"></TextBox>
+            <TextBlock Text="Выберите тип:" Width="175" TextAlignment="Right"></TextBlock>
+            <ComboBox Width="225" Name="ComboType" DisplayMemberPath="Type" SelectionChanged="ComboType_SelectionChanged"></ComboBox>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right">
+            <Button Width="150" Height="30" Margin="10" Content="Добавить" Grid.Row="1" HorizontalAlignment="Left" Name="BtnAdd" Click="BtnAdd_Click"></Button>
         </StackPanel>
         <ListView Grid.Row="1" Name="LViewTours" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
@@ -48,15 +46,20 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" Width="390" TextWrapping="Wrap"
+                        <TextBlock Text="{Binding EventType.Type}" VerticalAlignment="Center" TextAlignment="Center" Width="390" TextWrapping="Wrap"
                                    HorizontalAlignment="Center" Margin="5 5" FontSize="26" Grid.Row="0"></TextBlock>
-                        <TextBlock Text="{Binding Price, StringFormat={}{0:N2} РУБ}" Grid.Row="2" Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{Binding PeriodWork, StringFormat={} Время выполнения(ч.): {0}}" Grid.Row="3" FontSize="14" HorizontalAlignment="Right"></TextBlock>
-                        <TextBlock Text="{Binding ServiceType.Type}" Grid.Row="3" FontSize="14" HorizontalAlignment="Left"></TextBlock>
+                        <TextBlock Text="{Binding Name}" Grid.Row="2" Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding EventStatus.Status}" Grid.Row="3" FontSize="14" HorizontalAlignment="Right"></TextBlock>
+                        <TextBlock Text="{Binding User.Name}" Grid.Row="3" FontSize="14" HorizontalAlignment="Left"></TextBlock>
 
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Grid.Row ="1" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Height="30" Width="115" Content="Пред страница" FontSize="16" Click="BtnPagePrev_Click"/>
+            <TextBox Name="selectedPageTbx" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+            <Button Height="30" Width="115" Content="След страница" FontSize="16" Click="BtnPageNext_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

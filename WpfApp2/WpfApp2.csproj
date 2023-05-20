@@ -122,6 +122,9 @@
     <Compile Include="Views\UserAddEditPage.xaml.cs">
       <DependentUpon>UserAddEditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserEventAddEditPage.xaml.cs">
+      <DependentUpon>UserEventAddEditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserAddEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserEventAddEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

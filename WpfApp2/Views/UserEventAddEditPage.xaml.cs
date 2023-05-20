@@ -17,18 +17,18 @@ using WpfApp2.Model;
 namespace WpfApp2.Views
 {
     /// <summary>
-    /// Логика взаимодействия для EventAddEditPage.xaml
+    /// Логика взаимодействия для UserEventAddEditPage.xaml
     /// </summary>
-    public partial class EventAddEditPage : Page
+    public partial class UserEventAddEditPage : Page
     {
         private Event Event = new Event();
-        public EventAddEditPage(Event selectedType)
+        public UserEventAddEditPage(Event selectedEvent)
         {
             InitializeComponent();
-            if (selectedType != null)
+            if (selectedEvent != null)
             {
-                Event = selectedType;
-                ComboEventType.SelectedItem = selectedType.EventType;
+                Event = selectedEvent;
+                ComboEventType.SelectedItem = selectedEvent.EventType;
             }
 
             InitializeComponent();
@@ -36,7 +36,6 @@ namespace WpfApp2.Views
             DataContext = Event;
             ComboEventType.ItemsSource = AppData.db.EventType.ToList();
             ComboEventStatus.ItemsSource = AppData.db.EventStatus.ToList();
-            ComboEventOrganize.ItemsSource = AppData.db.User.ToList();
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -72,10 +71,11 @@ namespace WpfApp2.Views
             }
             try
             {
+                Event.OrganizeId = AppData.CurrentUser.Id;
                 Event.TypeId = currentServiceType.Id;
                 AppData.db.SaveChanges();
                 MessageBox.Show("Данные сохранены");
-                NavigationService.GoBack();
+
             }
             catch (Exception ex)
             {

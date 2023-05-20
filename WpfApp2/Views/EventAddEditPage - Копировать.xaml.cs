@@ -37,6 +37,11 @@ namespace WpfApp2.Views
             ComboEventType.ItemsSource = AppData.db.EventType.ToList();
             ComboEventStatus.ItemsSource = AppData.db.EventStatus.ToList();
             ComboEventOrganize.ItemsSource = AppData.db.User.ToList();
+
+            if (AppData.CurrentUser.RoleId == 2)
+            {
+                ComboEventOrganize.SelectedItem = AppData.CurrentUser.Login;
+            }
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
