@@ -51,10 +51,10 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <TextBlock Text="{Binding EventType.Type}" VerticalAlignment="Center" TextAlignment="Center" Width="390" TextWrapping="Wrap"
+                        <TextBlock Text="{Binding EventStatus.Status}" VerticalAlignment="Center" TextAlignment="Center" Width="390" TextWrapping="Wrap"
                                    HorizontalAlignment="Center" Margin="5 5" FontSize="26" Grid.Row="0"></TextBlock>
                         <TextBlock Text="{Binding Name}" Grid.Row="2" Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{Binding EventStatus.Status}" Grid.Row="3" FontSize="14" HorizontalAlignment="Right"></TextBlock>
+                        <TextBlock Text="{Binding EventType.Type}" Grid.Row="3" FontSize="14" HorizontalAlignment="Right"></TextBlock>
                         <TextBlock Text="{Binding User.Name}" Grid.Row="3" FontSize="14" HorizontalAlignment="Left"></TextBlock>
 
                     </Grid>

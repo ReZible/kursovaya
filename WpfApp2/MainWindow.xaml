@@ -8,15 +8,33 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="75"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentLoaded"/>
 
         <Grid Grid.Row="0" Background="Pink" >
-            <Button Content="Назад" Name="BtnGoBack" Click="BtnGoBack_Click" Visibility="Hidden" Width="100" Height="30" Background="Beige" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"></Button>
+            <Menu Visibility="Collapsed" FontSize="14px" Background="Black" Foreground="White" BorderBrush="White" BorderThickness="1px" Name="MainMenu" Margin="0,0,0,49">
+
+                <MenuItem BorderBrush="White" BorderThickness="1px" Name="MenuPersonal" Header="Пользователь">
+                    <MenuItem Foreground="Black" Name="MenuPersCabinet" Click="OpenPersonalCabinet" Header="Перейти в личный кабинет" />
+                    <MenuItem Foreground="Black" Name="MenuLogOut" Click="LogOutButton_Click" Header="Выйти из пользователя" />
+                </MenuItem>
+
+                <MenuItem BorderBrush="White" BorderThickness="1px" Name="MenuEdit" Header="Данные">
+                   
+                </MenuItem>
+
+                <MenuItem Foreground="White" Name="MenuMainPage" Click="GoToMainPage" Header="Главная страница" BorderBrush="White" BorderThickness="1px" />
+
+                <MenuItem Foreground="White" Click="CheckAllTaskBases" Header="Коллекции заданий" BorderBrush="White" BorderThickness="1px" />
+            </Menu>
         </Grid>
+
+        <Button Content="Назад" Name="BtnGoBack" Click="BtnGoBack_Click" Visibility="Hidden" Width="100" Height="30" Background="Beige" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"></Button>
+  
 
     </Grid>
 </Window>

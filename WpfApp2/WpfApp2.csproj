@@ -113,6 +113,9 @@
     <Compile Include="Views\EventShowDetailsPage.xaml.cs">
       <DependentUpon>EventShowDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PersonalCabinetPage.xaml.cs">
+      <DependentUpon>PersonalCabinetPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EventShowDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PersonalCabinetPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
