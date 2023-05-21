@@ -32,7 +32,7 @@
         </Grid>
         <Image HorizontalAlignment="Left" Width="50" Height="50" Margin="10" Source="/Resources/icon.png"></Image>
         <TextBlock Style="{StaticResource BlockHeader}" Text="{Binding ElementName=MainFrame, Path=Content.Title}" HorizontalAlignment="Center"/>
-        <Button Content="Назад" Name="BtnGoBack" Click="BtnGoBack_Click" Visibility="Hidden" Width="150" Height="30" Background="Beige" HorizontalAlignment="Right" Margin="0 10" VerticalAlignment="Bottom"></Button>
+        <Button Content="Назад" Name="BtnGoBack" Click="BtnGoBack_Click" Visibility="Hidden" Width="150" Height="30" Background="Beige" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Bottom"></Button>
   
 
     </Grid>

@@ -33,6 +33,7 @@ namespace WpfApp2.Views
             if (selectedType != null)
             {
                 Event = selectedType;
+                _mainImageData = Event.Img;
                 ComboEventType.SelectedItem = selectedType.EventType;
             }
 

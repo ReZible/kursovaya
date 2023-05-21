@@ -58,11 +58,11 @@ namespace WpfApp2.Views
             if (Visibility == Visibility.Visible)
             {
                 AppData.db.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
-                PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
 
                 if (AppData.CurrentUser != null)
                 {
+                    var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
+                    PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
                     LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
                     TbName.Text = AppData.CurrentUser.Name;
                     TbLogin.Text = AppData.CurrentUser.Login;

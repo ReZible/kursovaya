@@ -30,6 +30,7 @@ namespace WpfApp2.Views
         {
             InitializeComponent();
             Event = selectedType;
+            _mainImageData = Event.Img;
             DataContext = Event;
             ComboEventType.ItemsSource = AppData.db.EventType.ToList();
             ComboEventStatus.ItemsSource = AppData.db.EventStatus.ToList();

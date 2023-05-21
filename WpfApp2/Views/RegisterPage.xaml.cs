@@ -55,7 +55,7 @@ namespace WpfApp2.Views
             { 
                 AppData.db.SaveChanges();
                 MessageBox.Show("Вы успешно зарегистрировались!");
-                NavigationService.GoBack();
+                NavigationService.Navigate(new SignInPage());
             }
             catch(Exception ex)
             {
@@ -65,7 +65,7 @@ namespace WpfApp2.Views
 
         private void GoSingInBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new SignInPage());
         }
     }
 }
