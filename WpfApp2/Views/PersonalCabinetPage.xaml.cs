@@ -29,7 +29,7 @@ namespace WpfApp2.Views
         {
             InitializeComponent();
             var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
-    
+
             PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
             LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
 
@@ -61,7 +61,7 @@ namespace WpfApp2.Views
                 var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
                 PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
 
-                if ( AppData.CurrentUser != null)
+                if (AppData.CurrentUser != null)
                 {
                     LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
                     TbName.Text = AppData.CurrentUser.Name;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" Icon="/Resources/icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"></RowDefinition>
@@ -15,7 +15,7 @@
         <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentLoaded"/>
 
         <Grid Grid.Row="0" Background="RosyBrown" >
-            <Menu Visibility="Collapsed" FontSize="14px" Background="RosyBrown" Foreground="Black" Name="MainMenu" Margin="0,0,0,49">
+            <Menu Visibility="Collapsed" FontSize="14px" Background="RosyBrown" Foreground="Black" Name="MainMenu" Margin="0,0,0,40" HorizontalAlignment="Right">
 
                 <MenuItem Margin="2" BorderBrush="Black" BorderThickness="1px" Name="MenuUser" Header="Пользователь">
                     <MenuItem Foreground="Black" Name="PersonalCabinet" Click="GoPersonalCabinet_Click" Header="Перейти в личный кабинет" />
@@ -30,8 +30,9 @@
                 <MenuItem Foreground="Black" Name="MenuMainPage" Click="GoToMainPage_Click" Header="Мероприятия" BorderBrush="Black" BorderThickness="1px" Margin="2" />
             </Menu>
         </Grid>
+        <Image HorizontalAlignment="Left" Width="50" Height="50" Margin="10" Source="/Resources/icon.png"></Image>
         <TextBlock Style="{StaticResource BlockHeader}" Text="{Binding ElementName=MainFrame, Path=Content.Title}" HorizontalAlignment="Center"/>
-        <Button Content="Назад" Name="BtnGoBack" Click="BtnGoBack_Click" Visibility="Hidden" Width="150" Height="30" Background="Beige" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"></Button>
+        <Button Content="Назад" Name="BtnGoBack" Click="BtnGoBack_Click" Visibility="Hidden" Width="150" Height="30" Background="Beige" HorizontalAlignment="Right" Margin="0 10" VerticalAlignment="Bottom"></Button>
   
 
     </Grid>
