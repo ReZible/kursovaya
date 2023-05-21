@@ -15,7 +15,7 @@
           <Property Name="TypeId" Type="int" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Img" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Img" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="EventStatus">
           <Key>
@@ -196,7 +196,7 @@
           <Property Name="TypeId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="EventStatus" Relationship="Self.FK_event_eventStatus" FromRole="Event" ToRole="EventStatus" />
           <NavigationProperty Name="EventType" Relationship="Self.FK_event_eventType" FromRole="Event" ToRole="EventType" />
           <NavigationProperty Name="User" Relationship="Self.FK_event_user" FromRole="Event" ToRole="User" />

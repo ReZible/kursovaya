@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:WpfApp2.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EventShowDetailsPage" Loaded="CheckIsOrganize">
+      Title="Детали онлайн мероприятия" Loaded="CheckIsOrganize">
 
-    <Grid Background="#FF8C4C4C" ShowGridLines="False" UseLayoutRounding="True">
+    <Grid Background="FloralWhite" ShowGridLines="False" UseLayoutRounding="True">
         <Grid.RowDefinitions>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
@@ -18,30 +18,36 @@
             <ColumnDefinition  Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <StackPanel HorizontalAlignment="Center" Margin="0 20" Grid.Column="1" Grid.Row="2" >
+        <StackPanel HorizontalAlignment="Center"  Margin="0 20" Grid.Column="1" Grid.Row="2" >
             <TextBlock Text="Информация о мероприятии" FontSize="18" TextAlignment="Center" Margin="0 0 0 40"/>
 
             <TextBlock Text="Название" FontSize="16"/>
-            <TextBox IsReadOnly="True" Text="{Binding Name}" FontSize="16"/>
+            <TextBox x:Name="TbName" IsEnabled="False" Text="{Binding Name}" FontSize="16"/>
             
             <TextBlock Text="Организатор" FontSize="16"/>
-            <TextBox IsReadOnly="True" Text="{Binding User.Name}" FontSize="16"/>
+            <TextBox IsEnabled="False" Text="{Binding User.Name}" FontSize="16"/>
 
-            <TextBlock Text="Тип" FontSize="16"/>
-            <TextBox IsReadOnly="True" Text="{Binding EventType.Type}" FontSize="16"/>
-
-            <TextBlock Text="Статус" FontSize="16"/>
-            <TextBox IsReadOnly="True" Text="{Binding EventStatus.Status}" FontSize="16"/>
-
+            <Label FontSize="16" Padding="0">Тип</Label>
+            <ComboBox IsEnabled="False" SelectedItem="{Binding EventType}" x:Name="ComboEventType" DisplayMemberPath="Type"></ComboBox>
+            
+            <Label FontSize="16" Padding="0">Статус</Label>
+            <ComboBox IsEnabled="False" SelectedItem="{Binding EventStatus}" x:Name="ComboEventStatus" DisplayMemberPath="Status"></ComboBox>
+            
+            <TextBlock x:Name="TblImg" Text="Изображение" FontSize="16" Visibility="Collapsed"/>
+            <Button Height="25" Margin="0 1" Name="btnSelectImage" Click="BtnSelectImage_Click" Content="Выбрать фотографию" Visibility="Collapsed"/>
+            
             <TextBlock Text="Описание" FontSize="16"/>
-            <TextBox IsReadOnly="True" Text="{Binding Description}" FontSize="16"/>
+            <TextBox x:Name="TbDescription" IsEnabled="False" Text="{Binding Description}" FontSize="16"/>
+
+            <Button Background="Beige" x:Name="BtnSave" Click="BtnSave_Click" Width="150" Height="30"  Grid.Column="3" Grid.Row="2" Margin="10" Content="Сохранить"  HorizontalAlignment="Center" Visibility="Hidden" ></Button>
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Center" Margin="0 20" Grid.Column="0" Grid.Row="2" >
-            <TextBlock Text="Магазин услуг" FontSize="16" TextAlignment="Center"/>
-            <Image HorizontalAlignment="Left" Height="69" Margin="20,16,0,0" VerticalAlignment="Top" Width="94" Source="{Binding Img}"/>
-            <Button x:Name="btnTakePart" Click="btnTakePart_Click" Width="150" Height="30"  Grid.Column="3" Grid.Row="2" Margin="10" Content="Участоввать"  HorizontalAlignment="Right"></Button>
-            <Button x:Name="btnEdit" Click="btnEdit_Click" Width="150" Height="30"  Grid.Column="3" Grid.Row="2" Margin="10" Content="Редактировать"  HorizontalAlignment="Right"></Button>
+            <TextBlock Text="Изображение" FontSize="18" TextAlignment="Center"/>
+            <Image Height="175"  Margin="0 20" VerticalAlignment="Top" Source="{Binding Img}" x:Name="ImageService"/>
+            <Button Background="Beige" x:Name="BtnTakePart" Click="BtnTakePart_Click" Width="150" Height="30"  Grid.Column="3" Grid.Row="2" Margin="10" Content="Участоввать"  HorizontalAlignment="Center"></Button>
+            <TextBlock x:Name="TblMember" Visibility="Hidden" Text="Вы уже в списке участников" FontSize="14" TextAlignment="Center" Foreground="White"/>
+            <Button Background="Beige" x:Name="BtnEdit" Click="BtnEdit_Click" Width="150" Height="30"  Grid.Column="3" Grid.Row="2" Margin="10" Content="Редактировать"  HorizontalAlignment="Center"></Button>
         </StackPanel>
     </Grid>
 </Page>

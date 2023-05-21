@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,15 +16,16 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp2.Model;
 
-namespace WpfApp2.Views
+namespace WpfApp2
 {
     /// <summary>
-    /// Логика взаимодействия для UserEventAddEditPage.xaml
+    /// Логика взаимодействия для UserEventAddPage.xaml
     /// </summary>
-    public partial class UserEventAddEditPage : Page
+    public partial class UserEventAddPage : Page
     {
         private Event Event = new Event();
-        public UserEventAddEditPage(Event selectedEvent)
+        private byte[] _mainImageData = null;
+        public UserEventAddPage(Event selectedEvent)
         {
             InitializeComponent();
             if (selectedEvent != null)
@@ -31,24 +34,22 @@ namespace WpfApp2.Views
                 ComboEventType.SelectedItem = selectedEvent.EventType;
             }
 
-            InitializeComponent();
-
             DataContext = Event;
             ComboEventType.ItemsSource = AppData.db.EventType.ToList();
-            ComboEventStatus.ItemsSource = AppData.db.EventStatus.ToList();
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
-            if (string.IsNullOrWhiteSpace(Event.Name))
+            if(string.IsNullOrWhiteSpace(Event.Name))
                 errors.AppendLine("Укажите название");
-            /*  if (string.IsNullOrWhiteSpace(service.Price.ToString()))
-                  errors.AppendLine("Укажите цену");
-              if (string.IsNullOrWhiteSpace(service.PeriodWork.ToString()))
-                  errors.AppendLine("Укажите время выполнения(ч.)");*/
+            if (string.IsNullOrWhiteSpace(Event.Description))
+                errors.AppendLine("Укажите описание");
+            if (_mainImageData == null)
+                errors.AppendLine("Укажите изображение");
             if (ComboEventType.SelectedItem == null)
                 errors.AppendLine("Укажите тип мероприятия");
+
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
@@ -57,11 +58,11 @@ namespace WpfApp2.Views
             if (Event.Img == null)
             {
 
-                Event.Img = "Views/Resources/notFound.png";
+                /*Event.Img = "Views/Resources/notFound.png";*/
             }
             else
             {
-                Event.Img = $"Views/Resources/{Event.Img}";
+                /*Event.Img = $"Views/Resources/{Event.Img}";*/
             }
             var currentServiceType = ComboEventType.SelectedItem as EventType;
             if (Event.Id == 0)
@@ -71,6 +72,8 @@ namespace WpfApp2.Views
             }
             try
             {
+                Event.StatusId = 1;
+                Event.Img = _mainImageData;
                 Event.OrganizeId = AppData.CurrentUser.Id;
                 Event.TypeId = currentServiceType.Id;
                 AppData.db.SaveChanges();
@@ -80,6 +83,20 @@ namespace WpfApp2.Views
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void BtnSelectImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+            openFileDialog.Title = "Выберите изображение";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                _mainImageData = File.ReadAllBytes(openFileDialog.FileName);
+                ImageService.Source = new ImageSourceConverter()
+                    .ConvertFrom(_mainImageData) as ImageSource;
             }
         }
     }

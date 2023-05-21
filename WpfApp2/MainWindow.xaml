@@ -5,35 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentLoaded"/>
 
-        <Grid Grid.Row="0" Background="Pink" >
-            <Menu Visibility="Collapsed" FontSize="14px" Background="Black" Foreground="White" BorderBrush="White" BorderThickness="1px" Name="MainMenu" Margin="0,0,0,49">
+        <Grid Grid.Row="0" Background="RosyBrown" >
+            <Menu Visibility="Collapsed" FontSize="14px" Background="RosyBrown" Foreground="Black" Name="MainMenu" Margin="0,0,0,49">
 
-                <MenuItem BorderBrush="White" BorderThickness="1px" Name="MenuPersonal" Header="Пользователь">
-                    <MenuItem Foreground="Black" Name="MenuPersCabinet" Click="OpenPersonalCabinet" Header="Перейти в личный кабинет" />
-                    <MenuItem Foreground="Black" Name="MenuLogOut" Click="LogOutButton_Click" Header="Выйти из пользователя" />
+                <MenuItem Margin="2" BorderBrush="Black" BorderThickness="1px" Name="MenuUser" Header="Пользователь">
+                    <MenuItem Foreground="Black" Name="PersonalCabinet" Click="GoPersonalCabinet_Click" Header="Перейти в личный кабинет" />
+                    <MenuItem Foreground="Black" Name="LogOut" Click="LogOut_Click" Header="Выйти из пользователя" />
                 </MenuItem>
 
-                <MenuItem BorderBrush="White" BorderThickness="1px" Name="MenuEdit" Header="Данные">
-                   
+                <MenuItem Margin="2" BorderBrush="Black" BorderThickness="1px" Name="MenuAdmin" Header="Данные">
+                    <MenuItem Foreground="Black" Name="UserData" Click="GoUserData_Click" Header="Пользователи"/>
+                    <MenuItem Foreground="Black" Name="EventData" Click="GoEventData_Click" Header="Мероприятия"/>
                 </MenuItem>
 
-                <MenuItem Foreground="White" Name="MenuMainPage" Click="GoToMainPage" Header="Главная страница" BorderBrush="White" BorderThickness="1px" />
-
-                <MenuItem Foreground="White" Click="CheckAllTaskBases" Header="Коллекции заданий" BorderBrush="White" BorderThickness="1px" />
+                <MenuItem Foreground="Black" Name="MenuMainPage" Click="GoToMainPage_Click" Header="Мероприятия" BorderBrush="Black" BorderThickness="1px" Margin="2" />
             </Menu>
         </Grid>
-
-        <Button Content="Назад" Name="BtnGoBack" Click="BtnGoBack_Click" Visibility="Hidden" Width="100" Height="30" Background="Beige" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"></Button>
+        <TextBlock Style="{StaticResource BlockHeader}" Text="{Binding ElementName=MainFrame, Path=Content.Title}" HorizontalAlignment="Center"/>
+        <Button Content="Назад" Name="BtnGoBack" Click="BtnGoBack_Click" Visibility="Hidden" Width="150" Height="30" Background="Beige" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10"></Button>
   
 
     </Grid>

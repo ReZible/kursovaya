@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -101,8 +102,8 @@
     <Compile Include="Model\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\AdminPage.xaml.cs">
-      <DependentUpon>AdminPage.xaml</DependentUpon>
+    <Compile Include="Views\UserEventAddPage.xaml.cs">
+      <DependentUpon>UserEventAddPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EventAddEditPage.xaml.cs">
       <DependentUpon>EventAddEditPage.xaml</DependentUpon>
@@ -119,8 +120,8 @@
     <Compile Include="Views\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ShopPage.xaml.cs">
-      <DependentUpon>ShopPage.xaml</DependentUpon>
+    <Compile Include="Views\ShowEventsPage.xaml.cs">
+      <DependentUpon>ShowEventsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
@@ -128,11 +129,11 @@
     <Compile Include="Views\UserAddEditPage.xaml.cs">
       <DependentUpon>UserAddEditPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserEventAddEditPage.xaml.cs">
-      <DependentUpon>UserEventAddEditPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserSelfEditPage.xaml.cs">
+      <DependentUpon>UserSelfEditPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -146,7 +147,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AdminPage.xaml">
+    <Page Include="Views\UserEventAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,7 +171,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ShopPage.xaml">
+    <Page Include="Views\ShowEventsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,11 +183,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserEventAddEditPage.xaml">
+    <Page Include="Views\UserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserPage.xaml">
+    <Page Include="Views\UserSelfEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,17 +227,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Resources\04-demontaj-oboev.jpg" />
-    <Resource Include="Views\Resources\dismantle-floor-1.jpg" />
-    <Resource Include="Views\Resources\notFound.png" />
-    <Resource Include="Views\Resources\oshtukaturivanie-sten-cementno-peschanym-rastvorom.jpg" />
-    <Resource Include="Views\Resources\osyotr.png" />
-    <Resource Include="Views\Resources\shpatlevka_title.jpg" />
-    <Resource Include="Views\Resources\test.jpg" />
-    <Resource Include="Views\Resources\weq2141rqr.jpg" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Resource Include="Resources\notFound.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Model.Context.tt">

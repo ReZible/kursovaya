@@ -6,72 +6,78 @@
       xmlns:local="clr-namespace:WpfApp2.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PersonalCabinetPage">
+      Title="Личный кабинет" IsVisibleChanged="Page_IsVisibleChanged">
 
-    <Grid Background="#242424">
+    <Grid Background="FloralWhite" ShowGridLines="False" UseLayoutRounding="True">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <TextBlock Text="Личный кабинет" FontSize="22pt" FontStyle="Oblique" HorizontalAlignment="Center" Foreground="White"></TextBlock>
-        <Grid Background="Black" Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition  Width="*"></ColumnDefinition>
+            <ColumnDefinition  Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel HorizontalAlignment="Center" Margin="0 20" Grid.Column="1" Grid.Row="2" >
+            <TextBlock Foreground="Black" Text="Мои данные" FontSize="18" TextAlignment="Center" Margin="0 0 0 40"/>
+
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackPanel HorizontalAlignment="Right" Grid.Column="0">
-                    <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Имя: " FontSize="16pt"></TextBlock>
-                    <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Логин: " FontSize="16pt"></TextBlock>
-                    <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Пароль: " FontSize="16pt"></TextBlock>
-                    <TextBlock Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Роль: " FontSize="16pt"></TextBlock>
+                <StackPanel HorizontalAlignment="Center" Grid.Column="0">
+                    <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Имя: " FontSize="16pt"></TextBlock>
+                    <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Логин: " FontSize="16pt"></TextBlock>
+                    <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Пароль: " FontSize="16pt"></TextBlock>
+                    <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="0 5 0 0"  Text="Роль: " FontSize="16pt"></TextBlock>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1">
-                    <TextBlock Name="TbName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="#cccccc"></TextBlock>
-                    <TextBlock Name="TbLogin" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="#cccccc"></TextBlock>
-                    <TextBlock Name="TbPassword" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="#cccccc"></TextBlock>
-                    <TextBlock Name="TbRole" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="#cccccc"></TextBlock>
+                    <TextBlock Name="TbName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="Gray" ></TextBlock>
+                    <TextBlock Name="TbLogin" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="Gray"></TextBlock>
+                    <TextBlock Name="TbPassword" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="Gray"></TextBlock>
+                    <TextBlock Name="TbRole" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="Gray"></TextBlock>
                 </StackPanel>
             </Grid>
-            
-            <Button Content="Редактировать" Height="35" Name="BtnEdit" Click="BtnEdit_Click" Width="150" Background="Black" Foreground="White" 
-                        BorderBrush="Green" BorderThickness="2px" Margin="0 300 0 0"></Button>
-            
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column ="1">
-                <TextBlock HorizontalAlignment="Center" Text="Мои задания" Name="LBoxHeader" FontSize="16pt" Foreground="White"></TextBlock>
-                <ListView Grid.Row="1" Name="LViewTours" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_LeftMouseButtonUp" />
-                            <Setter Property="BorderThickness" Value="2" />
-                            <Setter Property="BorderBrush" Value="Lime" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="10" Width="400">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="40"></RowDefinition>
-                                    <RowDefinition Height="30"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding Name}" Grid.Row="0" Margin="5" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold"></TextBlock>
-                                <TextBlock Text="{Binding EventStatus.Status}" Grid.Row="3" FontSize="14" HorizontalAlignment="Center"></TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+
+            <Button Background="Beige" Width="150" Height="30"  Grid.Column="3" Grid.Row="2" Margin="10" Content="Редактировать"  HorizontalAlignment="Center" x:Name="BtnEdit" Click="BtnEdit_Click"></Button>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" Margin="0 20" Grid.Column="0" Grid.Row="2" >
+            <TextBlock HorizontalAlignment="Center" Text="Мои мероприятия" Name="LBoxHeader" FontSize="16pt" Foreground="Black"></TextBlock>
+            <ListView Grid.Row="1" Name="LViewTours" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_LeftMouseButtonUp" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="BorderBrush" Value="#cccccc" />
+                        <Setter Property="Margin" Value="5" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10" Width="200">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Name}" Grid.Row="0" Margin="5" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding EventStatus.Status}" Grid.Row="3" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Grid.Row ="1" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button x:Name="BtnPagePrev" Background="Beige" Height="30" Width="30" Content="&lt;&lt;" FontSize="16" Click="BtnPagePrev_Click"/>
+                <TextBlock Name="selectedPageTbx" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+                <Button  x:Name="BtnPageNext" Background="Beige" Height="30" Width="30" Content=">>" FontSize="16" Click="BtnPageNext_Click"/>
             </StackPanel>
-        </Grid>
+        </StackPanel>
     </Grid>
 </Page>

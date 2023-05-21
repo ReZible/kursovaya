@@ -26,7 +26,7 @@ namespace WpfApp2.Model
         public int TypeId { get; set; }
         public int StatusId { get; set; }
         public string Description { get; set; }
-        public string Img { get; set; }
+        public byte[] Img { get; set; }
     
         public virtual EventStatus EventStatus { get; set; }
         public virtual EventType EventType { get; set; }

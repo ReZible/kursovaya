@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using WpfApp2.Model;
 
 namespace WpfApp2.Views
@@ -27,14 +28,15 @@ namespace WpfApp2.Views
         public PersonalCabinetPage()
         {
             InitializeComponent();
-            var currentServices = AppData.db.Event.ToList();
+            var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
+    
             PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
             LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
-        }
 
-        private void LBMyTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            TbName.Text = AppData.CurrentUser.Name;
+            TbLogin.Text = AppData.CurrentUser.Login;
+            TbPassword.Text = AppData.CurrentUser.Password;
+            TbRole.Text = AppData.CurrentUser.Role.Name;
         }
 
         private void ListViewItem_LeftMouseButtonUp(object sender, MouseButtonEventArgs e)
@@ -48,7 +50,75 @@ namespace WpfApp2.Views
 
         private void BtnEdit_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new UserSelfEditPage(AppData.CurrentUser));
+        }
 
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                AppData.db.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
+                PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
+
+                if ( AppData.CurrentUser != null)
+                {
+                    LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
+                    TbName.Text = AppData.CurrentUser.Name;
+                    TbLogin.Text = AppData.CurrentUser.Login;
+                    TbPassword.Text = AppData.CurrentUser.Password;
+                    TbRole.Text = AppData.CurrentUser.Role.Name;
+                }
+            }
+        }
+        private void UpdateShop()
+        {
+            var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
+
+            PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
+            LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
+
+            CheckPages();
+        }
+
+        private void CheckPages()
+        {
+            if (NumberOfPage > 0)
+            {
+                BtnPagePrev.IsEnabled = true;
+            }
+            else
+            {
+                BtnPagePrev.IsEnabled = false;
+            }
+            if (NumberOfPage < PagesCount - 1)
+            {
+                BtnPageNext.IsEnabled = true;
+            }
+            else
+            {
+                BtnPageNext.IsEnabled = false;
+            }
+        }
+
+        private void BtnPageNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (NumberOfPage + 1 < PagesCount)
+            {
+                NumberOfPage++;
+                selectedPageTbx.Text = (NumberOfPage + 1).ToString();
+                UpdateShop();
+            }
+        }
+
+        private void BtnPagePrev_Click(object sender, RoutedEventArgs e)
+        {
+            if (NumberOfPage > 0)
+            {
+                NumberOfPage--;
+                selectedPageTbx.Text = (NumberOfPage + 1).ToString();
+                UpdateShop();
+            }
         }
     }
 }

@@ -36,11 +36,11 @@ namespace WpfApp2.Views
                 if (Event.Img == null)
                 {
 
-                    Event.Img = "Views/Resources/notFound.png";
+                    /*Event.Img = "Views/Resources/notFound.png";*/
                 }
                 else
                 {
-                    Event.Img = $"Views/Resources/{Event.Img}";
+                    /*Event.Img = $"Views/Resources/{Event.Img}";*/
                 }
                 DGridMenu.ItemsSource = AppData.db.Event.ToList();
             }

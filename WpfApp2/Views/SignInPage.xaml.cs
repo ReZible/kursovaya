@@ -31,7 +31,7 @@ namespace WpfApp2.Views
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(TxbLogin.Text))
                 errors.AppendLine("Укажите логин");
-            if (string.IsNullOrWhiteSpace(TxbPassword.Text))
+            if (string.IsNullOrWhiteSpace(TxbPassword.Password))
                 errors.AppendLine("Укажите пароль");
 
             if (errors.Length > 0)
@@ -40,18 +40,20 @@ namespace WpfApp2.Views
                 return;
             }
 
-            var CurrentUser = AppData.db.User.FirstOrDefault(u => u.Login == TxbLogin.Text && u.Password == TxbPassword.Text);
+            var CurrentUser =  AppData.db.User.Where(p => p.Login == TxbLogin.Text && p.Password == TxbPassword.Password)
+                .AsEnumerable()
+                .FirstOrDefault(p => p.Login == TxbLogin.Text && p.Password == TxbPassword.Password);
 
-            if( CurrentUser != null)
+            if ( CurrentUser != null)
             {   
                 AppData.CurrentUser = CurrentUser;
                 if(CurrentUser.RoleId == 1)
                 {
-                    NavigationService.Navigate(new AdminPage());
+                    NavigationService.Navigate(new ShowEventsPage());
                 }
                 else
                 {
-                    NavigationService.Navigate(new ShopPage());
+                    NavigationService.Navigate(new ShowEventsPage());
                 }
                 
             }
