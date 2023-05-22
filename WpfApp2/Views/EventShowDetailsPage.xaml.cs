@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -118,12 +119,16 @@ namespace WpfApp2.Views
             }
             try
             {
+                Event.Name = new Regex(@"\s+").Replace(Event.Name, " ").Trim();
+                Event.Description = new Regex(@"\s+").Replace(Event.Description, " ").Trim();
                 Event.Img = _mainImageData;
                 Event.OrganizeId = AppData.CurrentUser.Id;
                 Event.TypeId = currentServiceType.Id;
                 AppData.db.SaveChanges();
                 MessageBox.Show("Данные сохранены");
 
+                TbDescription.Text = Event.Description;
+                TbName.Text = Event.Name;
                 BtnSave.Visibility = Visibility.Hidden;
                 TbDescription.IsEnabled = false;
                 TbName.IsEnabled = false;

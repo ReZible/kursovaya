@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -82,15 +83,6 @@ namespace WpfApp2
                 MessageBox.Show(errors.ToString());
                 return;
             }
-            if (Event.Img == null)
-            {
-
-                /*Event.Img = "Views/Resources/notFound.png";*/
-            }
-            else
-            {
-                /*Event.Img = $"Views/Resources/{Event.Img}";*/
-            }
             var currentServiceType = ComboEventType.SelectedItem as EventType;
             if (Event.Id == 0)
             {
@@ -99,6 +91,8 @@ namespace WpfApp2
             }
             try
             {
+                Event.Name = new Regex(@"\s+").Replace(Event.Name, " ").Trim();
+                Event.Description = new Regex(@"\s+").Replace(Event.Description, " ").Trim();
                 Event.StatusId = 1;
                 Event.Img = _mainImageData;
                 Event.OrganizeId = AppData.CurrentUser.Id;

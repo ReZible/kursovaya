@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,9 +31,10 @@ namespace WpfApp2.Views
         {
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(TxbLogin.Text))
-                errors.AppendLine("Укажите логин");
+                errors.AppendLine("Укажите логин.");
+
             if (string.IsNullOrWhiteSpace(TxbPassword.Password))
-                errors.AppendLine("Укажите пароль");
+                errors.AppendLine("Укажите пароль.");
 
             if (errors.Length > 0)
             {
@@ -66,6 +68,14 @@ namespace WpfApp2.Views
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RegisterPage());
+        }
+
+        private void textBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

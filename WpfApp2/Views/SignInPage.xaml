@@ -11,9 +11,9 @@
     <Grid Background="FloralWhite">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
             <TextBlock Text="Логин" FontSize="16"/>
-            <TextBox Name="TxbLogin" FontSize="16"/>
+            <TextBox Name="TxbLogin" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
             <TextBlock Text="Пароль" FontSize="16"/>
-            <PasswordBox Name="TxbPassword" FontSize="16"/>
+            <PasswordBox Name="TxbPassword" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
 
             <Button Background="Beige" Height="20" Margin="0 5" Content="Войти" Click="BtnSignIn_Click" FontSize="13"/>
             <Button Background="Beige" Height="20" Content="Зарегистрироваться" Click="BtnRegister_Click" FontSize="13"/>

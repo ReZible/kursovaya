@@ -11,11 +11,11 @@
     <Grid Background="FloralWhite">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
             <TextBlock Text="Логин" FontSize="16"/>
-            <TextBox Text="{Binding Login}" FontSize="16"/>
+            <TextBox Text="{Binding Login}" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
             <TextBlock Text="Имя" FontSize="16"/>
-            <TextBox Text="{Binding Name}" FontSize="16"/>
+            <TextBox Text="{Binding Name}" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
             <TextBlock Text="Пароль" FontSize="16"/>
-            <TextBox Text="{Binding Password}" FontSize="16"/>
+            <TextBox Text="{Binding Password}" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
 
             <Button Background="Beige" Height="20" Margin="0 5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"/>
         </StackPanel>

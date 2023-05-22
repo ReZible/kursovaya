@@ -25,7 +25,7 @@
             <TextBox x:Name="TbName" IsEnabled="False" Text="{Binding Name}" FontSize="16"/>
             
             <TextBlock Text="Организатор" FontSize="16"/>
-            <TextBox IsEnabled="False" Text="{Binding User.Name}" FontSize="16"/>
+            <TextBox IsEnabled="False" Text="{Binding User.Name}" FontSize="16"  x:Name="TbxNmae"/>
 
             <Label FontSize="16" Padding="0">Тип</Label>
             <ComboBox IsEnabled="False" SelectedItem="{Binding EventType}" x:Name="ComboEventType" DisplayMemberPath="Type"></ComboBox>
