@@ -46,7 +46,7 @@
             <TextBlock Text="Изображение" FontSize="18" TextAlignment="Center"/>
             <Image Height="175"  Margin="0 20" VerticalAlignment="Top" Source="{Binding Img}" x:Name="ImageService"/>
             <Button Background="Beige" x:Name="BtnTakePart" Click="BtnTakePart_Click" Width="150" Height="30"  Grid.Column="3" Grid.Row="2" Margin="10" Content="Участоввать"  HorizontalAlignment="Center"></Button>
-            <TextBlock x:Name="TblMember" Visibility="Hidden" Text="Вы уже в списке участников" FontSize="14" TextAlignment="Center" Foreground="White"/>
+            <TextBlock x:Name="TblMember" Visibility="Hidden" Text="Вы уже в списке участников" FontSize="14" TextAlignment="Center" Foreground="Black"/>
             <Button Background="Beige" x:Name="BtnEdit" Click="BtnEdit_Click" Width="150" Height="30"  Grid.Column="3" Grid.Row="2" Margin="10" Content="Редактировать"  HorizontalAlignment="Center"></Button>
         </StackPanel>
     </Grid>
