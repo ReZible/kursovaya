@@ -36,6 +36,33 @@ namespace WpfApp2
 
             DataContext = Event;
             ComboEventType.ItemsSource = AppData.db.EventType.ToList();
+
+            if (Event.Img != null)
+            {
+                try
+                {
+                    ImageService.Source = new ImageSourceConverter()
+                        .ConvertFrom(Event.Img) as ImageSource;
+                }
+                catch (Exception ex)
+                {
+                    ImageService.Source = new ImageSourceConverter()
+                        .ConvertFrom(File.ReadAllBytes("../../Resources/default_large.png")) as ImageSource;
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                try
+                {
+                    ImageService.Source = new ImageSourceConverter()
+                        .ConvertFrom(File.ReadAllBytes("../../Resources/default_large.png")) as ImageSource;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
