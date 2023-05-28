@@ -48,7 +48,8 @@ namespace WpfApp2.Views
                 AppData.db.EventUsers.Add(EventsUsers);
                 AppData.db.SaveChanges();
                 MessageBox.Show("Вы приняли участие");
-                BtnTakePart.IsEnabled = false;
+                BtnTakePart.Visibility = Visibility.Collapsed;
+                BtnRemovePart.Visibility = Visibility.Visible;
                 TblMember.Visibility = Visibility.Visible;
             } 
         }
@@ -74,6 +75,7 @@ namespace WpfApp2.Views
             } else
             {
                 BtnEdit.Visibility = Visibility.Collapsed;
+                BtnDel.Visibility = Visibility.Collapsed;
             }
 
             if(Event.StatusId == 2)
@@ -86,7 +88,9 @@ namespace WpfApp2.Views
 
             if( isMember != null)
             {
-                BtnTakePart.IsEnabled = false;
+
+                BtnTakePart.Visibility = Visibility.Collapsed;
+                BtnRemovePart.Visibility = Visibility.Visible;
                 TblMember.Visibility = Visibility.Visible;
             }
             
@@ -162,6 +166,49 @@ namespace WpfApp2.Views
                 _mainImageData = File.ReadAllBytes(openFileDialog.FileName);
                 ImageService.Source = new ImageSourceConverter()
                     .ConvertFrom(_mainImageData) as ImageSource;
+            }
+        }
+
+        private void BtnDel_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Вы точно хотите удалить данное мероприятие?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    AppData.db.Event.Remove(Event);
+                    AppData.db.SaveChanges();
+                    MessageBox.Show("Данные удалены!");
+                    NavigationService.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
+
+        private void BtnRemovePart_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Вы точно хотите отменить участие в данном мероприятии?", "Внимание",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    var eventUsers = AppData.db.EventUsers.FirstOrDefault(u => u.EventId == Event.Id && u.UserId == AppData.CurrentUser.Id);
+
+                    AppData.db.EventUsers.Remove(eventUsers);
+                    AppData.db.SaveChanges();
+                    MessageBox.Show("Вы больше не являетесь участинком!");
+
+                    BtnTakePart.Visibility = Visibility.Visible;
+                    BtnRemovePart.Visibility = Visibility.Collapsed;
+                    TblMember.Visibility = Visibility.Hidden;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
         }
     }

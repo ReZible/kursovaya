@@ -36,8 +36,24 @@ namespace WpfApp2.Views
                 errors.AppendLine("Укажите корректный логин. Логин может состоять из латиницы и цифр");
             if (string.IsNullOrWhiteSpace(people.Name))
                 errors.AppendLine("Укажите имя");
-            if (string.IsNullOrWhiteSpace(people.Password) || !Regex.IsMatch(people.Password, @"^[a-zA-Z0-9]+$"))
-                errors.AppendLine("Укажите корректный пароль. Пароль может состоять из латиницы и цифр");   
+            if (string.IsNullOrWhiteSpace(PbPassword.Password))
+                errors.AppendLine("Укажите пароль");
+            else if(!Regex.IsMatch(PbPassword.Password, @"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$")) 
+                errors.AppendLine("Пароль должен состоять из заглавных,строчных символов,а также включать цифры, длина пароля не менее 8 символов");
+            else if (string.IsNullOrWhiteSpace(PbPasswordRepeat.Password))
+                errors.AppendLine("Подтвердите пароль");
+            else if (PbPassword.Password != PbPasswordRepeat.Password)
+                errors.AppendLine("Пароли не совпадают");
+
+            /* Password Regex:
+                    * ^              # start-of-string
+                   (?=.*[0-9])       # a digit must occur at least once
+                   (?=.*[a-z])       # a lower case letter must occur at least once
+                   (?=.*[A-Z])       # an upper case letter must occur at least once
+                   (?=\S+$)          # no whitespace allowed in the entire string
+                   .{8,}             # anything, at least eight places though
+                   $                 # end-of-string
+               */
 
             var repeatLogin = AppData.db.User.FirstOrDefault(u => u.Login == people.Login);
             if (repeatLogin != null)
@@ -51,6 +67,7 @@ namespace WpfApp2.Views
 
             if (people.Id == 0)
                 people.RoleId = 2;
+                people.Password = PbPassword.Password;
                 AppData.db.User.Add(people);
             try 
             {

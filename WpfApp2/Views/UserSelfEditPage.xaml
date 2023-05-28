@@ -10,14 +10,16 @@
 
     <Grid Background="FloralWhite">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
-            <TextBlock Text="Логин" FontSize="16"/>
-            <TextBox Text="{Binding Login}" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
-            <TextBlock Text="Имя" FontSize="16"/>
-            <TextBox Text="{Binding Name}" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
-            <TextBlock Text="Пароль" FontSize="16"/>
-            <TextBox Text="{Binding Password}" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
+            <TextBlock Height="30" Text="Логин" FontSize="16"/>
+            <TextBox Height="30" Text="{Binding Login}" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
+            <TextBlock Height="30" Text="Имя" FontSize="16"/>
+            <TextBox Height="30" Text="{Binding Name}" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
+            <TextBlock Height="30" Text="Пароль" FontSize="16"/>
+            <PasswordBox x:Name="PbPassword" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
+            <TextBlock Height="30" Text="Повторите пароль" FontSize="16"/>
+            <PasswordBox Height="30" x:Name="PbPasswordRepeat" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
 
-            <Button Background="Beige" Height="20" Margin="0 5" Content="Сохранить" Click="BtnSave_Click" FontSize="13"/>
+            <Button Background="Beige" Height="30" Margin="0 15" Content="Сохранить" Click="BtnSave_Click" FontSize="16"/>
         </StackPanel>
     </Grid>
 </Page>
