@@ -35,7 +35,7 @@ namespace WpfApp2.Views
 
             TbName.Text = AppData.CurrentUser.Name;
             TbLogin.Text = AppData.CurrentUser.Login;
-            TbPassword.Text = AppData.CurrentUser.Password;
+            TbPassword.Password = AppData.CurrentUser.Password;
             TbRole.Text = AppData.CurrentUser.Role.Name;
         }
 
@@ -66,7 +66,7 @@ namespace WpfApp2.Views
                     LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
                     TbName.Text = AppData.CurrentUser.Name;
                     TbLogin.Text = AppData.CurrentUser.Login;
-                    TbPassword.Text = AppData.CurrentUser.Password;
+                    TbPassword.Password = AppData.CurrentUser.Password;
                     TbRole.Text = AppData.CurrentUser.Role.Name;
                 }
             }

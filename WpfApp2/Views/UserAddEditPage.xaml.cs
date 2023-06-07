@@ -29,6 +29,8 @@ namespace WpfApp2.Views
             if (selectedUser != null)
             {
                 people = selectedUser;
+                PbPassword.Password = people.Password;
+                PbPasswordRepeat.Password = people.Password;
                 ComboRoles.SelectedItem = selectedUser.Role;
             }
             InitializeComponent();

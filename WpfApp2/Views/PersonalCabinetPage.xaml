@@ -59,7 +59,7 @@
                     <StackPanel Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1">
                         <TextBlock Name="TbName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="Gray" ></TextBlock>
                         <TextBlock Name="TbLogin" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="Gray"></TextBlock>
-                        <TextBlock Name="TbPassword" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="Gray"></TextBlock>
+                        <PasswordBox Name="TbPassword" IsEnabled = "False" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" BorderThickness="0" Background="Transparent" FontSize="16pt" Foreground="Gray"></PasswordBox>
                         <TextBlock Name="TbRole" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 5 0 0" FontSize="16pt" Foreground="Gray"></TextBlock>
                     </StackPanel>
                 </Grid>

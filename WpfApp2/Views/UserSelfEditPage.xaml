@@ -15,7 +15,7 @@
             <TextBlock Height="30" Text="Имя" FontSize="16"/>
             <TextBox Height="30" Text="{Binding Name}" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
             <TextBlock Height="30" Text="Пароль" FontSize="16"/>
-            <PasswordBox x:Name="PbPassword" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
+            <PasswordBox Height="30" x:Name="PbPassword" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
             <TextBlock Height="30" Text="Повторите пароль" FontSize="16"/>
             <PasswordBox Height="30" x:Name="PbPasswordRepeat" FontSize="16" PreviewKeyDown="textBox_PreviewKeyDown"/>
 
