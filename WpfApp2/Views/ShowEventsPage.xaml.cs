@@ -38,7 +38,7 @@ namespace WpfApp2.Views
 
             ComboType.SelectedIndex = 0;
 
-            var allStatus = AppData.db.EventStatus.ToList();
+            var allStatus = AppData.db.EventStatus.Where(e => e.Id != 3 && e.Id != 4).ToList();
             allStatus.Insert(0, new EventStatus
             {
                 Status = "Все статусы"
