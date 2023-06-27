@@ -1,0 +1,44 @@
+﻿<Page x:Class="WpfApp2.Views.EventConfiramationShowPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp2.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Детали онлайн мероприятия">
+
+    <Grid Background="FloralWhite" ShowGridLines="False" UseLayoutRounding="True">
+        <DockPanel HorizontalAlignment="Center">
+            <StackPanel Margin="20">
+                <TextBlock Text="Изображение" FontSize="18" TextAlignment="Center"/>
+                <Image Height="175"  Margin="0 20" VerticalAlignment="Top" Source="{Binding Img}" x:Name="ImageService"/>
+               
+                <TextBlock x:Name="TblMember" Visibility="Hidden" Text="Вы в списке участников" FontSize="14" TextAlignment="Center" Foreground="Black"/>
+                <Button Background="#008000" Foreground="White" x:Name="BtnEdit" Click="BtnApprove_Click" Width="150" Height="30"  Margin="10" Content="Подтвердить"  HorizontalAlignment="Center"></Button>
+                <Button Background="#FF0000" Foreground="White" x:Name="BtnDel" Click="BtnReject_Click" Width="150" Height="30" Margin="10" Content="Отклонить"  HorizontalAlignment="Center"></Button>
+            </StackPanel>
+
+            <StackPanel  Margin="20" >
+                <TextBlock Text="Информация о мероприятии" FontSize="18" TextAlignment="Center" Margin="0 0 0 40"/>
+
+                <TextBlock Height="30" Text="Название" FontSize="16"/>
+                <TextBox Height="30"  x:Name="TbName" IsEnabled="False" Text="{Binding Name}" FontSize="16"/>
+
+                <TextBlock Height="30" Text="Организатор" FontSize="16"/>
+                <TextBox Height="30"  IsEnabled="False" Text="{Binding User.Name}" FontSize="16"  x:Name="TbxNmae"/>
+
+                <Label Height="30" FontSize="16" Padding="0">Тип</Label>
+                <ComboBox Height="30" IsEnabled="False" SelectedItem="{Binding EventType}" x:Name="ComboEventType" DisplayMemberPath="Type"></ComboBox>
+
+                <Label Height="30" FontSize="16" Padding="0">Статус</Label>
+                <ComboBox Height="30" IsEnabled="False" SelectedItem="{Binding EventStatus}" x:Name="ComboEventStatus" DisplayMemberPath="Status"></ComboBox>
+
+                <TextBlock Height="30" x:Name="TblImg" Text="Изображение" FontSize="16" Visibility="Collapsed"/>
+
+                <TextBlock Height="30" Text="Описание" FontSize="16"/>
+                <TextBox Height="30" x:Name="TbDescription" IsEnabled="False" Text="{Binding Description}" FontSize="16"/>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Page>

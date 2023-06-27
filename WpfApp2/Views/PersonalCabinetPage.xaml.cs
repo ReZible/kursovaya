@@ -22,21 +22,19 @@ namespace WpfApp2.Views
     /// </summary>
     public partial class PersonalCabinetPage : Page
     {
-        private double PagesCount;
-        private int NumberOfPage = 0;
-        private int maxItemShow = 5;
+        private int maxItemShow = 3;
+        private int currentPageNumber = 1;
+        private int pagesCount;
         public PersonalCabinetPage()
         {
             InitializeComponent();
-            var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
-
-            PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
-            LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
 
             TbName.Text = AppData.CurrentUser.Name;
             TbLogin.Text = AppData.CurrentUser.Login;
             TbPassword.Password = AppData.CurrentUser.Password;
             TbRole.Text = AppData.CurrentUser.Role.Name;
+
+            UpdateEvent();
         }
 
         private void ListViewItem_LeftMouseButtonUp(object sender, MouseButtonEventArgs e)
@@ -61,63 +59,51 @@ namespace WpfApp2.Views
 
                 if (AppData.CurrentUser != null)
                 {
-                    var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
-                    PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
-                    LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
                     TbName.Text = AppData.CurrentUser.Name;
                     TbLogin.Text = AppData.CurrentUser.Login;
                     TbPassword.Password = AppData.CurrentUser.Password;
                     TbRole.Text = AppData.CurrentUser.Role.Name;
+
+                    UpdateEvent();
                 }
             }
         }
-        private void UpdateShop()
+        private void UpdateEvent()
         {
             var currentServices = AppData.db.Event.Where(c => c.OrganizeId == AppData.CurrentUser.Id).ToList();
 
-            PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
-            LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
+            var count = currentServices.Count();
+            pagesCount = (int)Math.Ceiling((double)count / maxItemShow);
+            LViewTours.ItemsSource = currentServices
+                .Skip((currentPageNumber - 1) * maxItemShow)
+                .Take(maxItemShow).ToList();
 
             CheckPages();
         }
 
         private void CheckPages()
         {
-            if (NumberOfPage > 0)
-            {
-                BtnPagePrev.IsEnabled = true;
-            }
-            else
-            {
-                BtnPagePrev.IsEnabled = false;
-            }
-            if (NumberOfPage < PagesCount - 1)
-            {
-                BtnPageNext.IsEnabled = true;
-            }
-            else
-            {
-                BtnPageNext.IsEnabled = false;
-            }
+            BtnPagePrev.IsEnabled = currentPageNumber > 1;
+            BtnPageNext.IsEnabled = currentPageNumber < pagesCount;
         }
 
         private void BtnPageNext_Click(object sender, RoutedEventArgs e)
         {
-            if (NumberOfPage + 1 < PagesCount)
+            if (currentPageNumber < pagesCount)
             {
-                NumberOfPage++;
-                selectedPageTbx.Text = (NumberOfPage + 1).ToString();
-                UpdateShop();
+                currentPageNumber++;
+                selectedPageTbx.Text = currentPageNumber.ToString();
+                UpdateEvent();
             }
         }
 
         private void BtnPagePrev_Click(object sender, RoutedEventArgs e)
         {
-            if (NumberOfPage > 0)
+            if (currentPageNumber > 1)
             {
-                NumberOfPage--;
-                selectedPageTbx.Text = (NumberOfPage + 1).ToString();
-                UpdateShop();
+                currentPageNumber--;
+                selectedPageTbx.Text = currentPageNumber.ToString();
+                UpdateEvent();
             }
         }
     }

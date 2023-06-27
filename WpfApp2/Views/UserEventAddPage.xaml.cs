@@ -93,12 +93,12 @@ namespace WpfApp2
             {
                 Event.Name = new Regex(@"\s+").Replace(Event.Name, " ").Trim();
                 Event.Description = new Regex(@"\s+").Replace(Event.Description, " ").Trim();
-                Event.StatusId = 1;
+                Event.StatusId = 3;
                 Event.Img = _mainImageData;
                 Event.OrganizeId = AppData.CurrentUser.Id;
                 Event.TypeId = currentServiceType.Id;
                 AppData.db.SaveChanges();
-                MessageBox.Show("Данные сохранены");
+                MessageBox.Show("Ваше мероприятия отправлено на проверку, статус мероприятия можно посмотреть в личном кабинете.");
                 NavigationService.GoBack();
             }
             catch (Exception ex)

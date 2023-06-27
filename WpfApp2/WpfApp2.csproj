@@ -102,6 +102,12 @@
     <Compile Include="Model\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\EventConfiramationShowPage.xaml.cs">
+      <DependentUpon>EventConfiramationShowPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EventConfirmationPage.xaml.cs">
+      <DependentUpon>EventConfirmationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserEventAddPage.xaml.cs">
       <DependentUpon>UserEventAddPage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +153,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\EventConfiramationShowPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EventConfirmationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserEventAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

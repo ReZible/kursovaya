@@ -21,9 +21,10 @@ namespace WpfApp2.Views
     /// </summary>
     public partial class ShowEventsPage : Page
     {
-        private double PagesCount;
-        private int NumberOfPage = 0;
         private int maxItemShow = 5;
+        private int currentPageNumber = 1;
+        private int pagesCount;
+
         public ShowEventsPage()
         {
             InitializeComponent();
@@ -47,13 +48,46 @@ namespace WpfApp2.Views
 
             ComboStatus.SelectedIndex = 0;
 
-            var currentServices = AppData.db.Event.ToList();
-            PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
-            LViewTours.ItemsSource = currentServices.Skip(maxItemShow*NumberOfPage).Take(maxItemShow).ToList();
+            UpdateEvent();
         }
-        private void UpdateShop()
+
+        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var currentServices = AppData.db.Event.ToList();
+            currentPageNumber = 1;
+            selectedPageTbx.Text = "1";
+            UpdateEvent();
+        }
+
+        private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentPageNumber = 1;
+            selectedPageTbx.Text = "1";
+            UpdateEvent();
+        }
+
+        private void BtnPageNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentPageNumber < pagesCount)
+            {
+                currentPageNumber++;
+                selectedPageTbx.Text = currentPageNumber.ToString();
+                UpdateEvent();
+            }
+        }
+
+        private void BtnPagePrev_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentPageNumber > 1)
+            {
+                currentPageNumber--;
+                selectedPageTbx.Text = currentPageNumber.ToString();
+                UpdateEvent();
+            }
+        }
+
+        private void UpdateEvent()
+        {
+            var currentServices = AppData.db.Event.Where(a => a.StatusId == 1 || a.StatusId == 2).ToList();
             if (ComboType.SelectedIndex > 0)
                 currentServices = currentServices.Where(c => c.EventType == ComboType.SelectedValue).ToList();
             if (ComboStatus.SelectedIndex > 0)
@@ -61,44 +95,19 @@ namespace WpfApp2.Views
 
             currentServices = currentServices.Where(c => c.Name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
 
-            PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
-            LViewTours.ItemsSource = currentServices.Skip(maxItemShow *NumberOfPage).Take(maxItemShow).ToList();
+            var count = currentServices.Count();
+            pagesCount = (int)Math.Ceiling((double)count / maxItemShow);
+            LViewTours.ItemsSource = currentServices
+                .Skip((currentPageNumber - 1) * maxItemShow)
+                .Take(maxItemShow).ToList();
 
             CheckPages();
         }
 
-        private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        private void CheckPages()
         {
-            NumberOfPage = 0;
-            selectedPageTbx.Text = "1";
-            UpdateShop();
-        }
-
-        private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            NumberOfPage = 0;
-            selectedPageTbx.Text = "1";
-            UpdateShop();
-        }
-
-        private void BtnPageNext_Click(object sender, RoutedEventArgs e)
-        {
-            if (NumberOfPage+1 < PagesCount)
-            {
-                NumberOfPage++;
-                selectedPageTbx.Text = (NumberOfPage+1).ToString();
-                UpdateShop();
-            }
-        }
-
-        private void BtnPagePrev_Click(object sender, RoutedEventArgs e)
-        {
-            if (NumberOfPage > 0)
-            {
-                NumberOfPage--;
-                selectedPageTbx.Text = (NumberOfPage+1).ToString();
-                UpdateShop();
-            }
+            BtnPagePrev.IsEnabled = currentPageNumber > 1;
+            BtnPageNext.IsEnabled = currentPageNumber < pagesCount;
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -109,10 +118,17 @@ namespace WpfApp2.Views
         private void ListViewItem_LeftMouseButtonUp(object sender, MouseButtonEventArgs e)
         {
             var item = (sender as ListViewItem).DataContext as Event;
-            if(item != null)
+            if (item != null)
             {
                 NavigationService.Navigate(new EventShowDetailsPage(item));
             }
+        }
+
+        private void ComboStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentPageNumber = 0;
+            selectedPageTbx.Text = "1";
+            UpdateEvent();
         }
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -129,36 +145,7 @@ namespace WpfApp2.Views
 
                 ComboType.SelectedIndex = 0;
 
-                var currentServices = AppData.db.Event.ToList();
-                PagesCount = Math.Ceiling(Convert.ToDouble(currentServices.Count) / Convert.ToDouble(maxItemShow));
-                LViewTours.ItemsSource = currentServices.Skip(maxItemShow * NumberOfPage).Take(maxItemShow).ToList();
-            }
-        }
-
-        private void ComboStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            NumberOfPage = 0;
-            selectedPageTbx.Text = "1";
-            UpdateShop();
-        }
-
-        private void CheckPages()
-        {
-            if (NumberOfPage > 0)
-            {
-                BtnPagePrev.IsEnabled = true;
-            }
-            else
-            {
-                BtnPagePrev.IsEnabled = false;
-            }
-            if (NumberOfPage < PagesCount-1)
-            {
-                BtnPageNext.IsEnabled = true;
-            }
-            else
-            {
-                BtnPageNext.IsEnabled = false;
+                UpdateEvent();
             }
         }
     }

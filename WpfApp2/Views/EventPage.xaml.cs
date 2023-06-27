@@ -33,15 +33,6 @@ namespace WpfApp2.Views
             {
                 AppData.db.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
 
-                if (Event.Img == null)
-                {
-
-                    /*Event.Img = "Views/Resources/notFound.png";*/
-                }
-                else
-                {
-                    /*Event.Img = $"Views/Resources/{Event.Img}";*/
-                }
                 DGridMenu.ItemsSource = AppData.db.Event.ToList();
             }
         }

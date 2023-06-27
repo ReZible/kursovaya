@@ -1,0 +1,58 @@
+﻿<Page x:Class="WpfApp2.Views.EventConfirmationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp2.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Заявки" IsVisibleChanged="Page_IsVisibleChanged">
+
+
+    <Grid Background="#F0F0F0">
+        <TextBlock Panel.ZIndex="1" Name="TblZeroEvent" Text="Сейчас нет заявок :C" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Visibility="Visible" />
+        <ListView Grid.Row="1" Name="LViewEvents" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="FloralWhite">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_LeftMouseButtonUp" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#cccccc" />
+                    <Setter Property="Margin" Value="10" />
+                    <Setter Property="Background" Value="Wheat" />
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Width="200">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"></RowDefinition>
+                            <RowDefinition Height="200"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Width="300" Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Center" Margin="3" Name="ImageService" Source="{Binding Img}"/>
+                        <TextBlock Text="{Binding EventStatus.Status}" VerticalAlignment="Center" TextAlignment="Center" Width="390" TextWrapping="Wrap"
+                                   HorizontalAlignment="Center" Margin="3 3" FontSize="26" Grid.Row="0"></TextBlock>
+                        <TextBlock Text="{Binding Name}" Grid.Row="2" Margin="5 5 5 10" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding EventType.Type}" Grid.Row="3" FontSize="14" HorizontalAlignment="Right"></TextBlock>
+                        <TextBlock Text="{Binding User.Name}" Grid.Row="3" FontSize="14" HorizontalAlignment="Left"></TextBlock>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row ="1" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 10 30 10">
+            <Button x:Name="BtnPagePrev" Background="Beige" Height="30" Width="35" Content="&lt;&lt;" FontSize="16" Click="BtnPagePrev_Click"/>
+            <TextBlock Name="selectedPageTbx" Grid.Column="0"  Margin=" 10 0" Grid.Row="0" Text="1" FontSize="16" TextAlignment="Center" VerticalAlignment="Center"/>
+            <Button  x:Name="BtnPageNext" Background="Beige" Height="30" Width="35" Content=">>" FontSize="16" Click="BtnPageNext_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

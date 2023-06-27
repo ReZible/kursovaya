@@ -16,7 +16,7 @@
         <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentLoaded"/>
 
         <Grid Grid.Row="0" Background="RosyBrown" >
-            <Menu Visibility="Collapsed" FontSize="14px" Background="RosyBrown" Foreground="Black" Name="MainMenu" Margin="0,0,0,40" HorizontalAlignment="Right">
+            <Menu Visibility="Hidden" FontSize="14px" Background="RosyBrown" Foreground="Black" Name="MainMenu" Margin="0,0,0,40" HorizontalAlignment="Right">
 
                 <MenuItem Margin="2" BorderBrush="Black" BorderThickness="1px" Name="MenuUser" Header="Пользователь">
                     <MenuItem Foreground="Black" Name="PersonalCabinet" Click="GoPersonalCabinet_Click" Header="Перейти в личный кабинет" />
@@ -27,6 +27,8 @@
                     <MenuItem Foreground="Black" Name="UserData" Click="GoUserData_Click" Header="Пользователи"/>
                     <MenuItem Foreground="Black" Name="EventData" Click="GoEventData_Click" Header="Мероприятия"/>
                 </MenuItem>
+
+                <MenuItem Foreground="Black" Name="MenuConfirmationEvent" Click="GoConfirmationEvent_Click" Header="Заявки" BorderBrush="Black" BorderThickness="1px" Margin="2"/>
 
                 <MenuItem Foreground="Black" Name="MenuMainPage" Click="GoToMainPage_Click" Header="Мероприятия" BorderBrush="Black" BorderThickness="1px" Margin="2" />
             </Menu>

@@ -32,13 +32,17 @@ namespace WpfApp2
 
         private void MainFrame_ContentLoaded(object sender, EventArgs e)
         {
+
             if (MainFrame.CanGoBack && AppData.CurrentUser != null)
             {
                 BtnGoBack.Visibility = Visibility.Visible;
+                MainMenu.Visibility = Visibility.Visible;
             }
             else
             {
+                AppData.CurrentUser = null;
                 BtnGoBack.Visibility = Visibility.Hidden;
+                MainMenu.Visibility = Visibility.Hidden; ;
             }
 
 
@@ -48,9 +52,11 @@ namespace WpfApp2
                 if (AppData.CurrentUser.RoleId == 2)
                 {
                     MenuAdmin.Visibility = Visibility.Collapsed;
+                    MenuConfirmationEvent.Visibility = Visibility.Collapsed;
                 } else
                 {
                     MenuAdmin.Visibility = Visibility.Visible;
+                    MenuConfirmationEvent.Visibility = Visibility.Visible;
                 }
             } else
             {
@@ -96,6 +102,12 @@ namespace WpfApp2
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             frameContent = MainFrame.Content;
+        }
+
+        private void GoConfirmationEvent_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new EventConfirmationPage());
+
         }
     }
 }

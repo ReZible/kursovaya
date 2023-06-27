@@ -12,7 +12,7 @@
         <DockPanel HorizontalAlignment="Center">
             <StackPanel HorizontalAlignment="Center" Margin="20" >
                 <TextBlock HorizontalAlignment="Center" Text="Мои мероприятия" Name="LBoxHeader" FontSize="16pt" Foreground="Black"></TextBlock>
-                <ListView Grid.Row="1" Name="LViewTours" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+                <ListView Grid.Row="1" Name="LViewTours" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Height="325">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <EventSetter Event="MouseLeftButtonUp" Handler="ListViewItem_LeftMouseButtonUp" />
